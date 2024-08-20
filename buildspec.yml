@@ -1,0 +1,19 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - echo Installing Maven
+      - yum install -y maven
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn clean install
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Copying artifacts
+      - mkdir -p build_artifacts
+      - cp target/*.jar build_artifacts/
+artifacts:
+  files:
+    - build_artifacts/**/* 
